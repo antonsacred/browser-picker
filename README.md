@@ -27,6 +27,13 @@ Homebrew cask clears quarantine attributes and applies local ad-hoc signing
 during install so the app can be launched after it lands in `/Applications`.
 That workaround only applies when installing through this trusted tap.
 
+Update later with standard Homebrew commands:
+
+```sh
+brew update
+brew upgrade --cask browser-picker
+```
+
 ## Help
 
 Found a bug? Please log an

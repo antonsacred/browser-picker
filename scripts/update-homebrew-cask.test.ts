@@ -29,6 +29,7 @@ test('should generate a cask with local repair steps for unsigned app builds', (
     expect(cask).toContain(
       'system_command "/usr/bin/codesign", args: ["--force", "--deep", "--sign", "-", "#{appdir}/browser-picker.app"]',
     )
+    expect(cask).not.toContain('auto_updates true')
     expect(cask).toContain('sha256 "arm-sha-123"')
     expect(cask).toContain('sha256 "x64-sha-456"')
     expect(cask).toContain(

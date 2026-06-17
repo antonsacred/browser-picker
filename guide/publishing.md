@@ -55,6 +55,9 @@ release workflow can push the cask update commit.
   `browser-picker-darwin-x64-<version>.zip`.
 - The tap automation replaces `Casks/browser-picker.rb` with a generated file on
   each release.
+- Do not mark the cask `auto_updates true`; browser-picker releases are intended
+  to be upgraded by Homebrew from the tap with normal `brew upgrade --cask`
+  behavior.
 - The generated cask includes a Homebrew-only local repair step that clears
   quarantine attributes and applies ad-hoc signing after install.
 - Any change to that workaround must be made in

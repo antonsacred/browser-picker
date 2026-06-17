@@ -32,7 +32,6 @@ const cask = `cask "browser-picker" do
   desc "Browser prompter for macOS"
   homepage "https://github.com/antonsacred/browser-picker"
 
-  auto_updates true
   depends_on macos: :monterey
 
   app "browser-picker.app"
