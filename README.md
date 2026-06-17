@@ -1,4 +1,4 @@
-<img src="./docs/icon_squooshed.png" alt="logo" width="100" height="100" align="right" />
+<img src="./docs/icon_squooshed.png" alt="logo" width="100" height="100" align="right"/>
 
 # browser-picker
 
