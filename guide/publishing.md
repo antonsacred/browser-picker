@@ -1,39 +1,44 @@
 # Publishing
 
-This document is for the maintainer. If you are contributing to the
-Browserosaurus project, you will not need to follow these steps.
+This document is for the maintainer. App releases are published from version
+tags in `antonsacred/browser-picker`, and the Homebrew tap is updated manually
+in `antonsacred/homebrew-browser-picker`.
 
-Setup Keychain for notarization:
+## Release sequence
 
-```sh
-xcrun notarytool store-credentials "AC_PASSWORD" --apple-id "email@example.com" --team-id "team-id" --password "app-password" --keychain "~/Library/Keychains/login.keychain-db"
-```
+1. Push a tag in the app repo using the `v<version>` format, for example:
 
-This will create an item called `com.apple.gke.notary.tool` in your `login`
-keychain.
+   ```sh
+   git tag v20.12.0
+   git push origin v20.12.0
+   ```
 
-- "AC_PASSWORD" is the name to be given to the keychain profile, and can be left
-  as-is.
-- The apple ID is usually your email address associated with your Apple
-  Developer account.
-- The Team ID can be found here:
-  https://developer.apple.com/account/#!/membership/
-- Password is the app-specific password that can be configured here:
-  https://appleid.apple.com/account/manage
-- I have found it best to store the generated item in the `login` keychain, and
-  the location used above is usually where it is found.
+2. Wait for the `Release` GitHub Actions workflow to finish. It will:
 
-Make sure the _Developer ID Application_ and _Developer ID Installer_
-certificates are in you keychain and have private keys attached to them. If this
-is a new mac, then can be exported from the old mac's keychain. Make sure to
-give the export a passphrase otherwise the private keys will not be exported.
-Failing that, restart the old mac and try again.
+   - run `npm ci --audit false`
+   - run `npm run doctor`
+   - run `npm run make`
+   - publish a GitHub Release with the macOS zip assets
 
-The following command will prompt to bump version number, package, notarize, and
-make ZIP bundle:
+3. Download the two release assets and calculate their SHA256 values:
 
-```
-npm run release
-```
+   ```sh
+   shasum -a 256 Browserosaurus-darwin-arm64-20.12.0.zip
+   shasum -a 256 Browserosaurus-darwin-x64-20.12.0.zip
+   ```
 
-The zip files can then be added to a GitHub release.
+4. In `antonsacred/homebrew-browser-picker`, update `Casks/browser-picker.rb`
+   with:
+
+   - the new version
+   - the new `arm64` SHA256
+   - the new `x64` SHA256
+
+5. Commit and push the tap update.
+
+## Notes
+
+- This flow publishes unsigned CI-built zip assets only.
+- The current release asset names come from Electron Forge's zip maker:
+  `Browserosaurus-darwin-arm64-<version>.zip` and
+  `Browserosaurus-darwin-x64-<version>.zip`.

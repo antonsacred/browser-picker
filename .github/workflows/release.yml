@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-13
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.12.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --audit false
+
+      - name: Validate tag version
+        run: test "${GITHUB_REF_NAME#v}" = "$(node -p \"require('./package.json').version\")"
+
+      - name: Run doctor
+        run: npm run doctor
+
+      - name: Build macOS release assets
+        run: npm run make
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            out/make/zip/darwin/arm64/Browserosaurus-darwin-arm64-*.zip
+            out/make/zip/darwin/x64/Browserosaurus-darwin-x64-*.zip

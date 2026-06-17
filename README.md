@@ -1,8 +1,3 @@
-📣 This project is no longer maintained. Please see my
-[blog post](https://wstone.uk/blog/the-retirement-of-browserosaurus/) for the
-final thoughts on the project. Thank you everyone who has enjoyed using my
-little app 🤓
-
 <img src="./docs/icon_squooshed.png" alt="logo" width="100" height="100" align="right" />
 
 # Browserosaurus
@@ -11,34 +6,26 @@ Browserosaurus is an open-source (GPLv3 license) browser prompter for macOS. It
 works by setting itself as the default browser, and any clicked links in
 non-browser apps are now sent to Browserosaurus where you are presented with a
 menu of all your installed browsers. You may now decide which app you’d like to
-continue opening the link with.
+continue opening the link with. Releases are now published from this repository
+and installed via the dedicated Homebrew tap below.
 
 <img src="./docs/screenshot.jpg" alt="screenshot" />
 
 ## Installation
 
-Download Browserosaurus from the
-[GitHub releases page](https://github.com/will-stone/browserosaurus/releases/latest).
-Select **x64** for Intel machines, or **arm64** for Apple Silicon (M1) machines.
-
-Or use [Homebrew](https://formulae.brew.sh/cask/browserosaurus#default). Thank
-you very much to [@i0ntempest](https://github.com/i0ntempest) and
-[@tk4k](https://github.com/tk4k) for keeping this cask updated 🙏
+Install from the custom Homebrew tap:
 
 ```sh
-brew install --cask browserosaurus
+brew tap antonsacred/browser-picker
+brew install --cask browser-picker
 ```
-
-> 🚨 **Please note that Browserosaurus only officially supports the version of
-> macOS that I currently use, which you can assume to be the latest stable
-> version.**
 
 ## Help
 
 Found a bug? Please log an
-[issue](https://github.com/will-stone/browserosaurus/issues). For anything else,
-please see the documentation below or open a
-[discussion](https://github.com/will-stone/browserosaurus/discussions).
+[issue](https://github.com/antonsacred/browser-picker/issues). For anything
+else, please see the documentation below or open a
+[discussion](https://github.com/antonsacred/browser-picker/discussions).
 
 ## Projects inspired by Browserosaurus
 
@@ -58,8 +45,8 @@ forks of this project that you may like to consider:
 
 ## Documentation
 
-- [Changelog](https://github.com/will-stone/browserosaurus/releases)
-- [Help](https://github.com/will-stone/browserosaurus/discussions/categories/q-a)
+- [Changelog](https://github.com/antonsacred/browser-picker/releases)
+- [Help](https://github.com/antonsacred/browser-picker/discussions/categories/q-a)
 - [Supporting a new browser or app](guide/supporting-a-browser-or-app.md)
 - [Setting up for development](guide/setting-up-for-development.md)
 - [Privacy policy](guide/privacy.md)
@@ -68,3 +55,12 @@ For the maintainer:
 
 - [Creating app icon](guide/creating-app-icon.md)
 - [Publishing](guide/publishing.md)
+
+## Maintainer Release Flow
+
+1. Push a version tag like `v20.12.0` in `antonsacred/browser-picker`.
+2. Wait for the tag workflow to publish the GitHub Release and upload the two
+   macOS zip assets.
+3. Calculate the `arm64` and `x64` SHA256 values for those release zips.
+4. Update `Casks/browser-picker.rb` in `antonsacred/homebrew-browser-picker`.
+5. Commit and push the tap update.

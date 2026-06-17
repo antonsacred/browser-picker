@@ -7,11 +7,11 @@
     "Electron",
     "Browser chooser"
   ],
-  "homepage": "https://wstone.io/browserosaurus",
+  "homepage": "https://github.com/antonsacred/browser-picker",
   "bugs": {
-    "url": "https://github.com/will-stone/browserosaurus/issues"
+    "url": "https://github.com/antonsacred/browser-picker/issues"
   },
-  "repository": "https://github.com/will-stone/browserosaurus",
+  "repository": "https://github.com/antonsacred/browser-picker",
   "license": "GPL-3.0-only",
   "author": "Will Stone",
   "type": "module",
