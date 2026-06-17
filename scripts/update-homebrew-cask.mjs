@@ -33,7 +33,7 @@ const cask = `cask "browser-picker" do
   homepage "https://github.com/antonsacred/browser-picker"
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "browser-picker.app"
 
