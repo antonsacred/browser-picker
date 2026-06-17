@@ -2,12 +2,13 @@
 
 # browser-picker
 
-browser-picker is an open-source (GPLv3 license) browser prompter for macOS. It
-works by setting itself as the default browser, and any clicked links in
-non-browser apps are now sent to browser-picker where you are presented with a
-menu of all your installed browsers. You may now decide which app you’d like to
-continue opening the link with. Releases are now published from this repository
-and installed via the dedicated Homebrew tap below.
+browser-picker is an open-source (GPLv3 license) browser prompter (originally
+developed in https://github.com/will-stone/browserosaurus) for macOS. It works
+by setting itself as the default browser, and any clicked links in non-browser
+apps are now sent to browser-picker where you are presented with a menu of all
+your installed browsers. You may now decide which app you’d like to continue
+opening the link with. Releases are now published from this repository and
+installed via the dedicated Homebrew tap below.
 
 <img src="./docs/screenshot.jpg" alt="screenshot" />
 
@@ -17,45 +18,17 @@ Install from the custom Homebrew tap:
 
 ```sh
 brew tap antonsacred/browser-picker
-brew trust --cask antonsacred/browser-picker/browser-picker
+brew trust --cask antonsacred/browser-picker
 brew install --cask browser-picker
 ```
 
 Homebrew requires explicit trust for third-party taps before installing casks
-from them. The GitHub release zip files are unsigned macOS builds; the custom
-Homebrew cask clears quarantine attributes and applies local ad-hoc signing
-during install so the app can be launched after it lands in `/Applications`.
-That workaround only applies when installing through this trusted tap.
-
-Update later with standard Homebrew commands:
-
-```sh
-brew update
-brew upgrade --cask browser-picker
-```
+from them.
 
 ## Help
 
 Found a bug? Please log an
-[issue](https://github.com/antonsacred/browser-picker/issues). For anything
-else, please see the documentation below or open a
-[discussion](https://github.com/antonsacred/browser-picker/discussions).
-
-## Projects inspired by browser-picker
-
-browser-picker is primarily made for my needs and environment. Therefore, some
-feature requests do not make it into the main project, but that's the beauty of
-Open Source, you are free to copy the code and make your own tweaks (as long as
-it remains open-sourced, of course, please see the license 😉). Here are some
-forks of this project that you may like to consider:
-
-- [Browseratops](https://github.com/riotrah/browseratops) by
-  [@riotrah](https://github.com/riotrah). browser-picker but for **Windows**!
-- [Browserino](https://github.com/AlexStrNik/Browserino) by
-  [@alexstrnik](https://github.com/AlexStrNik). **Swift UI** port of
-  browser-picker.
-
-> Please PR your own fork to this list.
+[issue](https://github.com/antonsacred/browser-picker/issues).
 
 ## Documentation
 
