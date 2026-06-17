@@ -17,8 +17,12 @@ Install from the custom Homebrew tap:
 
 ```sh
 brew tap antonsacred/browser-picker
+brew trust --cask antonsacred/browser-picker/browser-picker
 brew install --cask browser-picker
 ```
+
+Homebrew requires explicit trust for third-party taps before installing casks
+from them.
 
 ## Help
 
