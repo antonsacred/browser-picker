@@ -20,6 +20,10 @@ function replaceOnce(source, pattern, replacement, description) {
   return source.replace(pattern, replacement)
 }
 
+function hasMatch(source, pattern) {
+  return pattern.test(source)
+}
+
 const file = getArg('file')
 const version = getArg('version')
 const armSha = getArg('arm-sha')
@@ -34,6 +38,9 @@ const intelBlock = `  on_intel do
     sha256 "${x64Sha}"
     url "https://github.com/antonsacred/browser-picker/releases/download/v#{version}/Browserosaurus-darwin-x64-#{version}.zip"
   end`
+
+const legacyArchBlockPattern =
+  /^[ ]{2}if Hardware::CPU\.arm\?[\S\s]*?^[ ]{2}end$/mu
 
 const input = await readFile(file, 'utf8')
 
@@ -53,19 +60,35 @@ output = replaceOnce(
   'homepage',
 )
 
-output = replaceOnce(
-  output,
-  /^[ ]{2}on_arm do[\S\s]*?^[ ]{2}end$/mu,
-  armBlock,
-  'on_arm',
-)
+if (
+  hasMatch(output, /^[ ]{2}on_arm do[\S\s]*?^[ ]{2}end$/mu) &&
+  hasMatch(output, /^[ ]{2}on_intel do[\S\s]*?^[ ]{2}end$/mu)
+) {
+  output = replaceOnce(
+    output,
+    /^[ ]{2}on_arm do[\S\s]*?^[ ]{2}end$/mu,
+    armBlock,
+    'on_arm',
+  )
 
-output = replaceOnce(
-  output,
-  /^[ ]{2}on_intel do[\S\s]*?^[ ]{2}end$/mu,
-  intelBlock,
-  'on_intel',
-)
+  output = replaceOnce(
+    output,
+    /^[ ]{2}on_intel do[\S\s]*?^[ ]{2}end$/mu,
+    intelBlock,
+    'on_intel',
+  )
+} else if (hasMatch(output, legacyArchBlockPattern)) {
+  output = replaceOnce(
+    output,
+    legacyArchBlockPattern,
+    `${armBlock}\n\n${intelBlock}`,
+    'legacy arch',
+  )
+} else {
+  throw new Error(
+    'Expected either on_arm/on_intel blocks or a legacy if Hardware::CPU.arm? block',
+  )
+}
 
 if (output !== input) {
   await writeFile(file, `${output.trimEnd()}\n`)
