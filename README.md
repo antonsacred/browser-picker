@@ -58,13 +58,11 @@ For the maintainer:
 
 ## Maintainer Release Flow
 
-1. Push a version tag like `v20.12.0` in `antonsacred/browser-picker`.
-2. Wait for the tag workflow to publish the GitHub Release and upload the two
+1. Run `npm run release -- 21.0.5` on a clean working tree.
+2. The script runs checks, updates `package.json` and `package-lock.json`,
+   creates the release commit, and creates the `v21.0.5` tag locally.
+3. Push with `git push origin main --follow-tags`.
+4. Wait for the tag workflow to publish the GitHub Release and upload the two
    macOS zip assets.
-3. The same workflow calculates the `arm64` and `x64` SHA256 values from those
-   zip assets.
-4. The workflow updates `Casks/browser-picker.rb` in
-   `antonsacred/homebrew-browser-picker` and pushes the tap commit
-   automatically.
-5. If the tap update fails, fix the cask or token issue and rerun the tag
-   workflow.
+5. The same workflow updates `Casks/browser-picker.rb` in
+   `antonsacred/homebrew-browser-picker` automatically.

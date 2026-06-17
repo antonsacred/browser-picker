@@ -6,14 +6,26 @@ automatically in `antonsacred/homebrew-browser-picker`.
 
 ## Release sequence
 
-1. Push a tag in the app repo using the `v<version>` format, for example:
+1. Create the release locally on a clean working tree:
 
    ```sh
-   git tag v20.12.0
-   git push origin v20.12.0
+   npm run release -- 20.12.0
    ```
 
-2. Wait for the `Release` GitHub Actions workflow to finish. It will:
+   This will:
+
+   - run `npm run doctor`
+   - update `package.json` and `package-lock.json`
+   - create a commit like `chore: release v20.12.0`
+   - create a tag `v20.12.0`
+
+2. Push the release commit and tag:
+
+   ```sh
+   git push origin main --follow-tags
+   ```
+
+3. Wait for the `Release` GitHub Actions workflow to finish. It will:
 
    - run `npm ci --audit false`
    - run `npm run doctor`
@@ -24,7 +36,7 @@ automatically in `antonsacred/homebrew-browser-picker`.
    - update `Casks/browser-picker.rb`
    - commit and push the tap update automatically
 
-3. If the release succeeds but the tap update fails, fix the underlying issue
+4. If the release succeeds but the tap update fails, fix the underlying issue
    and rerun the workflow.
 
 ## Required secret
