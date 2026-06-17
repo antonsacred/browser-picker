@@ -35,6 +35,22 @@ jobs:
       - name: Build macOS release assets
         run: npm run make
 
+      - name: Compute release metadata
+        id: meta
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          ARM_FILE="out/make/zip/darwin/arm64/Browserosaurus-darwin-arm64-${VERSION}.zip"
+          X64_FILE="out/make/zip/darwin/x64/Browserosaurus-darwin-x64-${VERSION}.zip"
+
+          test -f "$ARM_FILE"
+          test -f "$X64_FILE"
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "arm_file=$ARM_FILE" >> "$GITHUB_OUTPUT"
+          echo "x64_file=$X64_FILE" >> "$GITHUB_OUTPUT"
+          echo "arm_sha=$(shasum -a 256 "$ARM_FILE" | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+          echo "x64_sha=$(shasum -a 256 "$X64_FILE" | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
@@ -42,3 +58,35 @@ jobs:
           files: |
             out/make/zip/darwin/arm64/Browserosaurus-darwin-arm64-*.zip
             out/make/zip/darwin/x64/Browserosaurus-darwin-x64-*.zip
+
+      - name: Verify tap repo token
+        run: test -n "${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}"
+
+      - name: Checkout tap repo
+        uses: actions/checkout@v4
+        with:
+          path: homebrew-browser-picker
+          repository: antonsacred/homebrew-browser-picker
+          token: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
+
+      - name: Update Homebrew cask
+        run: |
+          node scripts/update-homebrew-cask.mjs \
+            --file homebrew-browser-picker/Casks/browser-picker.rb \
+            --version "${{ steps.meta.outputs.version }}" \
+            --arm-sha "${{ steps.meta.outputs.arm_sha }}" \
+            --x64-sha "${{ steps.meta.outputs.x64_sha }}"
+
+      - name: Commit tap update
+        working-directory: homebrew-browser-picker
+        run: |
+          if git diff --quiet -- Casks/browser-picker.rb; then
+            echo "No tap update required"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Casks/browser-picker.rb
+          git commit -m "Update browser-picker cask for v${{ steps.meta.outputs.version }}"
+          git push

@@ -1,8 +1,8 @@
 # Publishing
 
 This document is for the maintainer. App releases are published from version
-tags in `antonsacred/browser-picker`, and the Homebrew tap is updated manually
-in `antonsacred/homebrew-browser-picker`.
+tags in `antonsacred/browser-picker`, and the Homebrew tap is updated
+automatically in `antonsacred/homebrew-browser-picker`.
 
 ## Release sequence
 
@@ -19,22 +19,21 @@ in `antonsacred/homebrew-browser-picker`.
    - run `npm run doctor`
    - run `npm run make`
    - publish a GitHub Release with the macOS zip assets
+   - calculate the `arm64` and `x64` SHA256 values from the generated zip files
+   - check out `antonsacred/homebrew-browser-picker`
+   - update `Casks/browser-picker.rb`
+   - commit and push the tap update automatically
 
-3. Download the two release assets and calculate their SHA256 values:
+3. If the release succeeds but the tap update fails, fix the underlying issue
+   and rerun the workflow.
 
-   ```sh
-   shasum -a 256 Browserosaurus-darwin-arm64-20.12.0.zip
-   shasum -a 256 Browserosaurus-darwin-x64-20.12.0.zip
-   ```
+## Required secret
 
-4. In `antonsacred/homebrew-browser-picker`, update `Casks/browser-picker.rb`
-   with:
+Set `HOMEBREW_TAP_GITHUB_TOKEN` in the `antonsacred/browser-picker` repository
+secrets.
 
-   - the new version
-   - the new `arm64` SHA256
-   - the new `x64` SHA256
-
-5. Commit and push the tap update.
+The token needs write access to `antonsacred/homebrew-browser-picker` so the
+release workflow can push the cask update commit.
 
 ## Notes
 
@@ -42,3 +41,6 @@ in `antonsacred/homebrew-browser-picker`.
 - The current release asset names come from Electron Forge's zip maker:
   `Browserosaurus-darwin-arm64-<version>.zip` and
   `Browserosaurus-darwin-x64-<version>.zip`.
+- The tap automation expects `Casks/browser-picker.rb` to contain `version`,
+  `homepage`, `on_arm`, and `on_intel` blocks in the standard Homebrew cask
+  format.

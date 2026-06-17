@@ -61,6 +61,10 @@ For the maintainer:
 1. Push a version tag like `v20.12.0` in `antonsacred/browser-picker`.
 2. Wait for the tag workflow to publish the GitHub Release and upload the two
    macOS zip assets.
-3. Calculate the `arm64` and `x64` SHA256 values for those release zips.
-4. Update `Casks/browser-picker.rb` in `antonsacred/homebrew-browser-picker`.
-5. Commit and push the tap update.
+3. The same workflow calculates the `arm64` and `x64` SHA256 values from those
+   zip assets.
+4. The workflow updates `Casks/browser-picker.rb` in
+   `antonsacred/homebrew-browser-picker` and pushes the tap commit
+   automatically.
+5. If the tap update fails, fix the cask or token issue and rerun the tag
+   workflow.
