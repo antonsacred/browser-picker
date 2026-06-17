@@ -22,7 +22,10 @@ brew install --cask browser-picker
 ```
 
 Homebrew requires explicit trust for third-party taps before installing casks
-from them.
+from them. The GitHub release zip files are unsigned macOS builds; the custom
+Homebrew cask clears quarantine attributes and applies local ad-hoc signing
+during install so the app can be launched after it lands in `/Applications`.
+That workaround only applies when installing through this trusted tap.
 
 ## Help
 
@@ -67,6 +70,7 @@ For the maintainer:
    creates the release commit, and creates the `v21.0.5` tag locally.
 3. Push with `git push origin main --follow-tags`.
 4. Wait for the tag workflow to publish the GitHub Release and upload the two
-   macOS zip assets.
+   unsigned macOS zip assets.
 5. The same workflow updates `Casks/browser-picker.rb` in
-   `antonsacred/homebrew-browser-picker` automatically.
+   `antonsacred/homebrew-browser-picker` automatically, including the local
+   Homebrew-only repair step for those unsigned builds.

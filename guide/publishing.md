@@ -30,7 +30,7 @@ automatically in `antonsacred/homebrew-browser-picker`.
    - run `npm ci --audit false`
    - run `npm run doctor`
    - run `npm run make`
-   - publish a GitHub Release with the macOS zip assets
+   - publish a GitHub Release with unsigned macOS zip assets
    - calculate the `arm64` and `x64` SHA256 values from the generated zip files
    - check out `antonsacred/homebrew-browser-picker`
    - update `Casks/browser-picker.rb`
@@ -55,3 +55,7 @@ release workflow can push the cask update commit.
   `browser-picker-darwin-x64-<version>.zip`.
 - The tap automation replaces `Casks/browser-picker.rb` with a generated file on
   each release.
+- The generated cask includes a Homebrew-only local repair step that clears
+  quarantine attributes and applies ad-hoc signing after install.
+- Any change to that workaround must be made in
+  `scripts/update-homebrew-cask.mjs`, not by editing the tap repo manually.

@@ -37,6 +37,11 @@ const cask = `cask "browser-picker" do
 
   app "browser-picker.app"
 
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/browser-picker.app"]
+    system_command "/usr/bin/codesign", args: ["--force", "--deep", "--sign", "-", "#{appdir}/browser-picker.app"]
+  end
+
   uninstall quit: "com.browser-picker"
 
   zap trash: [
