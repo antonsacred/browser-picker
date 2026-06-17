@@ -53,6 +53,5 @@ release workflow can push the cask update commit.
 - The current release asset names come from Electron Forge's zip maker:
   `Browserosaurus-darwin-arm64-<version>.zip` and
   `Browserosaurus-darwin-x64-<version>.zip`.
-- The tap automation expects `Casks/browser-picker.rb` to contain `version`,
-  `homepage`, `on_arm`, and `on_intel` blocks in the standard Homebrew cask
-  format.
+- The tap automation replaces `Casks/browser-picker.rb` with a generated file on
+  each release.

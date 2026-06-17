@@ -49,7 +49,7 @@ function main() {
   run('npm', ['version', version, '--no-git-tag-version'])
   run('git', ['add', 'package.json', 'package-lock.json'])
   run('git', ['commit', '-m', `chore: release ${tag}`])
-  run('git', ['tag', tag])
+  run('git', ['tag', '-a', tag, '-m', tag])
 
   log(`Created release commit and tag ${tag}`)
   log('Push with: git push origin main --follow-tags')
