@@ -1,4 +1,4 @@
-Browserosaurus is now considered _Public Feature Complete_, however I'm always
+browser-picker is now considered _Public Feature Complete_, however I'm always
 open to ideas.
 
 - [New apps/browsers](guide/supporting-a-browser-or-app.md)

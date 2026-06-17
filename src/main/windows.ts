@@ -86,7 +86,7 @@ async function createWindows(): Promise<void> {
     movable: false,
     resizable: true,
     show: false,
-    title: 'Browserosaurus',
+    title: 'browser-picker',
     titleBarStyle: 'hidden',
     transparent: true,
     vibrancy: 'popover',

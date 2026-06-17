@@ -1,5 +1,5 @@
 {
-  "name": "browserosaurus",
+  "name": "browser-picker",
   "version": "21.0.7",
   "description": "The browser prompter for macOS",
   "keywords": [
@@ -104,5 +104,5 @@
     "eslint": "^9.12.0",
     "vite": "^5.4.9"
   },
-  "productName": "Browserosaurus"
+  "productName": "browser-picker"
 }

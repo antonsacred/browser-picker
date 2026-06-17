@@ -7,7 +7,7 @@ import { VitePlugin } from '@electron-forge/plugin-vite'
 const config = {
   makers: [new MakerZIP({}, ['darwin'])],
   packagerConfig: {
-    appBundleId: 'com.browserosaurus',
+    appBundleId: 'com.browser-picker',
     appCategoryType: 'public.app-category.developer-tools',
     asar: false,
     extendInfo: 'plist/Info.plist',

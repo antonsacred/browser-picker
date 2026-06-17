@@ -20,29 +20,29 @@ const cask = `cask "browser-picker" do
 
   on_arm do
     sha256 "${armSha}"
-    url "https://github.com/antonsacred/browser-picker/releases/download/v#{version}/Browserosaurus-darwin-arm64-#{version}.zip"
+    url "https://github.com/antonsacred/browser-picker/releases/download/v#{version}/browser-picker-darwin-arm64-#{version}.zip"
   end
 
   on_intel do
     sha256 "${x64Sha}"
-    url "https://github.com/antonsacred/browser-picker/releases/download/v#{version}/Browserosaurus-darwin-x64-#{version}.zip"
+    url "https://github.com/antonsacred/browser-picker/releases/download/v#{version}/browser-picker-darwin-x64-#{version}.zip"
   end
 
-  name "Browserosaurus"
+  name "browser-picker"
   desc "Browser prompter for macOS"
   homepage "https://github.com/antonsacred/browser-picker"
 
   auto_updates true
   depends_on macos: ">= :monterey"
 
-  app "Browserosaurus.app"
+  app "browser-picker.app"
 
-  uninstall quit: "com.browserosaurus"
+  uninstall quit: "com.browser-picker"
 
   zap trash: [
-    "~/Library/Application Support/Browserosaurus",
-    "~/Library/Preferences/com.browserosaurus.plist",
-    "~/Library/Saved Application State/com.browserosaurus.savedState",
+    "~/Library/Application Support/browser-picker",
+    "~/Library/Preferences/com.browser-picker.plist",
+    "~/Library/Saved Application State/com.browser-picker.savedState",
   ]
 end
 `

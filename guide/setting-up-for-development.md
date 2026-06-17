@@ -6,13 +6,13 @@ Ensure you are running the correct version of Node. The repo includes an
 Clone your fork of this repository:
 
 ```
-git clone git@github.com:USERNAME/browserosaurus.git
+git clone git@github.com:USERNAME/browser-picker.git
 ```
 
 Move to folder:
 
 ```
-cd browserosaurus
+cd browser-picker
 ```
 
 Install dependencies:
@@ -21,14 +21,14 @@ Install dependencies:
 npm i
 ```
 
-Run Browserosaurus in dev mode:
+Run browser-picker in dev mode:
 
 ```
 npm start
 ```
 
-> ℹ️ If you already have a copy of Browserosaurus installed, it's advisable to
+> ℹ️ If you already have a copy of browser-picker installed, it's advisable to
 > quit that first as the two apps will look identical in the menubar.
 
-> ℹ️ When setting the development Browserosaurus as the default browser, you
+> ℹ️ When setting the development browser-picker as the default browser, you
 > will need to select "Electron".

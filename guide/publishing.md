@@ -51,7 +51,7 @@ release workflow can push the cask update commit.
 
 - This flow publishes unsigned CI-built zip assets only.
 - The current release asset names come from Electron Forge's zip maker:
-  `Browserosaurus-darwin-arm64-<version>.zip` and
-  `Browserosaurus-darwin-x64-<version>.zip`.
+  `browser-picker-darwin-arm64-<version>.zip` and
+  `browser-picker-darwin-x64-<version>.zip`.
 - The tap automation replaces `Casks/browser-picker.rb` with a generated file on
   each release.

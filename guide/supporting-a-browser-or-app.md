@@ -4,7 +4,7 @@ Adding and maintaining the available browsers and apps is a community effort; I
 have now added support for all the browsers that I use, and any newly requested
 apps are either too niche or behind pay walls. However, by following this
 document you can add the browser yourself and submit it to be included in
-Browserosaurus. Don't worry, even if you've never contributed to an open source
+browser-picker. Don't worry, even if you've never contributed to an open source
 project before, I'll take you through the steps of how to add support for a new
 browser, and if something is confusing or you'd like a little extra help, please
 [ask on the discussions forum](https://github.com/antonsacred/browser-picker/discussions/categories/q-a),
@@ -25,7 +25,7 @@ Fork the project to your GitHub account, and then make sure you are
 Using your text editor (I recommend
 [Visual Studio Code](https://code.visualstudio.com/)), open the
 `/src/config/apps.ts` file. After all the import statements, you'll see an
-`apps` object that contains all of the apps that Browserosaurus can find on a
+`apps` object that contains all of the apps that browser-picker can find on a
 user's system. The key to each app object is the app name (as written in the
 `/Applications` folder). Add your new app to the list:
 
@@ -47,7 +47,7 @@ it behaves how you would expect.
 
 ### Private / Incognito Mode
 
-Some browsers support opening in a _private_ or _incognito_ mode. Browserosaurus
+Some browsers support opening in a _private_ or _incognito_ mode. browser-picker
 can be set to open the given URL in private mode when holding the
 <kbd>shift</kbd> key and clicking an app icon or using its hotkey. If you'd like
 to support this with your added browser, you will need to find the
@@ -89,10 +89,10 @@ discuss it on the pull request page.
 
 ## Submit your changes
 
-Commit and push your changes to your GitHub fork of Browserosaurus, then open a
+Commit and push your changes to your GitHub fork of browser-picker, then open a
 [pull request](https://github.com/antonsacred/browser-picker/pulls) to merge
-your branch into Browserosaurus' `main` branch. Please note that this repository
-now follows the
+your branch into browser-picker's `main` branch. Please note that this
+repository now follows the
 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standard,
 and so please structure your commit messages accordingly. The example above's
 commit message could look something like this:

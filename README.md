@@ -1,10 +1,10 @@
 <img src="./docs/icon_squooshed.png" alt="logo" width="100" height="100" align="right" />
 
-# Browserosaurus
+# browser-picker
 
-Browserosaurus is an open-source (GPLv3 license) browser prompter for macOS. It
+browser-picker is an open-source (GPLv3 license) browser prompter for macOS. It
 works by setting itself as the default browser, and any clicked links in
-non-browser apps are now sent to Browserosaurus where you are presented with a
+non-browser apps are now sent to browser-picker where you are presented with a
 menu of all your installed browsers. You may now decide which app you’d like to
 continue opening the link with. Releases are now published from this repository
 and installed via the dedicated Homebrew tap below.
@@ -27,19 +27,19 @@ Found a bug? Please log an
 else, please see the documentation below or open a
 [discussion](https://github.com/antonsacred/browser-picker/discussions).
 
-## Projects inspired by Browserosaurus
+## Projects inspired by browser-picker
 
-Browserosaurus is primarily made for my needs and environment. Therefore, some
+browser-picker is primarily made for my needs and environment. Therefore, some
 feature requests do not make it into the main project, but that's the beauty of
 Open Source, you are free to copy the code and make your own tweaks (as long as
 it remains open-sourced, of course, please see the license 😉). Here are some
 forks of this project that you may like to consider:
 
 - [Browseratops](https://github.com/riotrah/browseratops) by
-  [@riotrah](https://github.com/riotrah). Browserosaurus but for **Windows**!
+  [@riotrah](https://github.com/riotrah). browser-picker but for **Windows**!
 - [Browserino](https://github.com/AlexStrNik/Browserino) by
   [@alexstrnik](https://github.com/AlexStrNik). **Swift UI** port of
-  Browserosaurus.
+  browser-picker.
 
 > Please PR your own fork to this list.
 
