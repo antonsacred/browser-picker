@@ -39,8 +39,8 @@ jobs:
         id: meta
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          ARM_FILE="out/make/zip/darwin/arm64/Browserosaurus-darwin-arm64-${VERSION}.zip"
-          X64_FILE="out/make/zip/darwin/x64/Browserosaurus-darwin-x64-${VERSION}.zip"
+          ARM_FILE="out/make/zip/darwin/arm64/browser-picker-darwin-arm64-${VERSION}.zip"
+          X64_FILE="out/make/zip/darwin/x64/browser-picker-darwin-x64-${VERSION}.zip"
 
           test -f "$ARM_FILE"
           test -f "$X64_FILE"
@@ -56,8 +56,8 @@ jobs:
         with:
           generate_release_notes: true
           files: |
-            out/make/zip/darwin/arm64/Browserosaurus-darwin-arm64-*.zip
-            out/make/zip/darwin/x64/Browserosaurus-darwin-x64-*.zip
+            out/make/zip/darwin/arm64/browser-picker-darwin-arm64-*.zip
+            out/make/zip/darwin/x64/browser-picker-darwin-x64-*.zip
 
       - name: Verify tap repo token
         run: test -n "${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}"
